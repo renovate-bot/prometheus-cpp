@@ -46,6 +46,7 @@ script:
   - bazel build //...
   - bazel test --test_output=all //core/... //pull/...
   - bazel test --test_output=all //pull/tests/integration:scrape-test
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then gem install coveralls-lcov && bazel coverage --test_output=all //core/tests:unit && coveralls-lcov bazel-testlogs/core/tests/unit/coverage.dat; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then bazel test --test_output=all //pull/tests/integration:lint-test; fi
   - bazel run -c opt //core/benchmarks
 
