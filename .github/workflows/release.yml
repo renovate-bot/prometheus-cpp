@@ -1,4 +1,6 @@
 on:
+  # triggeing by a release would be preferred but it's blocked by
+  # https://github.com/actions/upload-release-asset/pull/41
   push:
     # Sequence of patterns matched against refs/tags
     tags:
@@ -24,7 +26,7 @@ jobs:
       - name: Create tarball including submodules
         shell: bash
         env:
-          PREFIX: prometheus-cpp-${{ github.ref }}
+          PREFIX: prometheus-cpp-with-submodules
         run: |
           git archive --prefix "${PREFIX}/" -o "${PREFIX}.tar" HEAD
           git submodule foreach --recursive "git archive --prefix=${PREFIX}/\$path/ --output=\$sha1.tar HEAD && tar --concatenate --file=$(pwd)/${PREFIX}.tar \$sha1.tar && rm \$sha1.tar"
