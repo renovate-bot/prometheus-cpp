@@ -27,7 +27,7 @@ jobs:
       # using the official actions/upload-release-asset action would be preferred but is blocked by
       # https://github.com/actions/upload-release-asset/pull/41
       - name: Upload the artifacts
-        uses: skx/github-action-publish-binaries@75ce5546020fc1848da842f40240f9fa03e7a3a8 # release-0.14
+        uses: skx/github-action-publish-binaries@44887b225ceca96efd8a912d39c09ad70312af31 # release-0.14
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
